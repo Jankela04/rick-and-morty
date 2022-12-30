@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useQuery, gql } from "@apollo/client";
+import Error from "./pages/Error";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Loading from "./pages/Loading";
+import "./styles/styles.css";
+import ErrorSite from "./pages/ErrorSite";
+import CharacterList from "./pages/CharacterList";
+import Character from "./pages/Character";
+import Episode from "./pages/Episode";
+
+const GET_CHARACTERS = gql`
+    query GetCharacters {
+        characters {
+            results {
+                id
+                name
+                image
+            }
+        }
+    }
+`;
+interface CharacterTypes {
+    id: number;
+    name: string;
+    image: string;
+}
+
+export interface DataType {
+    characters: {
+        results: CharacterTypes[];
+    };
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { error, loading } = useQuery(GET_CHARACTERS);
+
+    const { data } = useQuery<DataType>(GET_CHARACTERS);
+
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <CharacterList data={data} />,
+        },
+        {
+            path: "/character/:id",
+            element: <Character />,
+        },
+        {
+            path: "/episode/:id",
+            element: <Episode />,
+        },
+        {
+            path: "*",
+            element: <ErrorSite />,
+        },
+    ]);
+
+    if (loading) return <Loading />;
+
+    if (error) return <Error error={error} />;
+
+    return (
+        <>
+            <RouterProvider router={router} />
+        </>
+    );
 }
 
 export default App;

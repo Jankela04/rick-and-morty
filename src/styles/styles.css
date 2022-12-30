@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.2rem;
+  overflow-x: hidden;
+  background-color: #121212;
+  color: white;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@-webkit-keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
+}
+@keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
+}
+.wrapper .error {
+  text-align: center;
+  font-size: 2rem;
+}
+.wrapper .spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  border: 15px solid white;
+}
+.wrapper .spinner::after {
+  content: "";
+  display: block;
+  background-color: black;
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: -15px;
+  -webkit-animation: spin 2s cubic-bezier(0.47, 0.16, 0.07, 0.95) infinite;
+          animation: spin 2s cubic-bezier(0.47, 0.16, 0.07, 0.95) infinite;
+}
+.wrapper .spinner::before {
+  content: "";
+  display: block;
+  background-color: black;
+  width: 20px;
+  height: 100px;
+  position: absolute;
+  right: calc(50% - 10px);
+  top: -15px;
+  -webkit-animation: spin 2s cubic-bezier(0.47, 0.16, 0.07, 0.95) infinite;
+          animation: spin 2s cubic-bezier(0.47, 0.16, 0.07, 0.95) infinite;
+}
+
+.flex-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 3em;
+  padding-inline: 5em;
+  margin: 1.5em 0;
+}
+.flex-wrapper a {
+  font-family: "Quicksand", sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.flex-wrapper .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.flex-wrapper .search input {
+  background-color: gray;
+  height: 2rem;
+  font-size: 1.5em;
+  width: 10em;
+  cursor: pointer;
+  padding: 0.5em;
+}
+.flex-wrapper .search svg {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  right: 0;
+  margin-right: 0.5em;
+}
+
+.character-list-container {
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  -moz-column-gap: 2em;
+       column-gap: 2em;
+  row-gap: 2em;
+  width: calc(1050px + 4em);
+  margin: auto;
+}
+.character-list-container .card {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 3px solid white;
+  border-radius: 10px;
+  width: 350px;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  transition: scale 350ms ease, background-color 350ms ease;
+}
+.character-list-container .card img {
+  order: 1;
+  width: 150px;
+  height: 150px;
+}
+.character-list-container .card span {
+  text-align: center;
+  margin-right: 1em;
+  order: 2;
+}
+.character-list-container .card:hover {
+  scale: 1.1;
+  background-color: rgb(92, 92, 92);
+}
+
+.grayed {
+  color: #c9c9c9;
+  font-size: 0.9em;
+  margin-bottom: 0.1em;
+}
+
+.character-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.character-container img {
+  margin-right: 1em;
+}
+.character-container .info {
+  display: block;
+}
+.character-container .info > span {
+  margin-bottom: 1em;
+  display: inline-block;
+}
+.character-container .info .status {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+.character-container .info .status .status-icon {
+  margin-right: 0.2em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.episode-container {
+  margin-top: 2em;
+  width: 558px;
+}
+.episode-container a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  position: relative;
+}
+.episode-container a::after {
+  background-color: white;
+  content: "";
+  width: 100%;
+  position: absolute;
+  transform-origin: left;
+  bottom: 0;
+  left: 0;
+  height: 0.1em;
+}
+.episode-container a::before {
+  background-color: rgb(129, 129, 129);
+  content: "";
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  transform: scaleX(0);
+  transition: 0.5s;
+  transform-origin: left;
+  bottom: 0;
+  left: 0;
+  height: 0.1em;
+}
+.episode-container a:hover::before {
+  transform: scaleX(1);
+}
+.episode-container div {
+  margin-bottom: 0.1em;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+.container .info {
+  margin-bottom: 1em;
+  display: inline-block;
+}
+.container h3 {
+  margin-bottom: 1em;
+}
+.container .episode-name {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+.container .episode-name span {
+  margin-left: 0.5em;
+}
+
+.episode .character-list-container {
+  grid-template-columns: repeat(2, 350px);
+  width: 800px;
+}/*# sourceMappingURL=styles.css.map */

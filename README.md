@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+# Rick And Morty
+
+Simple app for displaying information about Rick and Morty characters using [Rick and Morty api](https://rickandmortyapi.com/) and [GraphQL](https://graphql.org/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
